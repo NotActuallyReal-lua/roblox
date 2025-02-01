@@ -1,0 +1,12 @@
+local playerRemovingConnection
+playerRemovingConnection = Players.PlayerRemoving:Connect(function(player)
+	if table.find(gamePlayers, player) then
+		table.remove(gamePlayers, table.find(gamePlayers, player))
+		PlayersLeft.Value = PlayersLeft.Value - 1
+	end
+	playerStats[player] = nil
+
+	if player.Character then
+		player.Character:Destroy()
+	end
+end)
